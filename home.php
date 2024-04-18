@@ -1,4 +1,5 @@
-<?php include('db_connect.php');
+<?php include('db_connect.php'); ?>
+<?php 
 function ordinal_suffix1($num){
     $num = $num % 100; // protect against large numbers
     if($num < 11 || $num > 13){
@@ -10,13 +11,12 @@ function ordinal_suffix1($num){
     }
     return $num.'th';
 }
-$astat = array("Not Yet Started","Started","Closed");
+$astat = array("Not Yet Started","On-going","Closed");
  ?>
-
-<div class="col-12">
+ <div class="col-12">
     <div class="card">
       <div class="card-body">
-        Welcome <?php echo $_SESSION['login_name'] ?>!
+        Welcome <?php echo $_SESSION['login_name']; ?>!
         <br>
         <div class="col-md-5">
           <div class="callout callout-info">
@@ -27,3 +27,53 @@ $astat = array("Not Yet Started","Started","Closed");
       </div>
     </div>
 </div>
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4">
+            <div class="small-box bg-light shadow-sm border">
+              <div class="inner">
+                <h3><?php echo $conn->query("SELECT * FROM faculty_list ")->num_rows; ?></h3>
+
+                <p>Total Faculties</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-user-friends"></i>
+              </div>
+            </div>
+          </div>
+           <div class="col-12 col-sm-6 col-md-4">
+            <div class="small-box bg-light shadow-sm border">
+              <div class="inner">
+                <h3><?php echo $conn->query("SELECT * FROM student_list")->num_rows; ?></h3>
+
+                <p>Total Students</p>
+              </div>
+              <div class="icon">
+                <i class="fa ion-ios-people-outline"></i>
+              </div>
+            </div>
+          </div>
+           <div class="col-12 col-sm-6 col-md-4">
+            <div class="small-box bg-light shadow-sm border">
+              <div class="inner">
+                <h3><?php echo $conn->query("SELECT * FROM users")->num_rows; ?></h3>
+
+                <p>Total Users</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4">
+            <div class="small-box bg-light shadow-sm border">
+              <div class="inner">
+                <h3><?php echo $conn->query("SELECT * FROM class_list")->num_rows; ?></h3>
+
+                <p>Total Sections</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-list-alt"></i>
+              </div>
+            </div>
+          </div>
+      </div>
